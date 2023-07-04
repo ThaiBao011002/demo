@@ -8,12 +8,12 @@ export interface InputTypes {
 
 export interface ISignUp {
   email: string;
-  password: string;
+  passWord: string;
   name: string;
   phoneNumber: string;
 }
 
 export interface ISignIn {
   email: string;
-  password: string;
+  passWord: string;
 }

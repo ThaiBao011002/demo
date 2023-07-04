@@ -7,20 +7,22 @@ import useAuth from "../../hooks/useAuth";
 import { CustomInput, Button } from "../../components";
 import ImageBG from "../../assets/images/right_side.svg";
 import * as Yup from 'yup'; // ok
+import { ISignUp } from "../../types/input";
 
 function Register() {
   const { loginUser, registerUser } = useAuth();
   const SignupSchema = Yup.object().shape({
     name: Yup.string()
-      .min(2, 'Too Short!')
+      .min(5, 'Too Short!')
       .max(50, 'Too Long!')
-      .required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
+      .required('Name is Required'),
+    email: Yup.string().email('Invalid email').required('Email is Required'),
+    phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required('Phone number is required'),
   });
   return (
     <SContainer>
       <SForm>
-        <Formik // anh cho em xin source em mo` thu? nha :)) github a' anh   em có tạo sẵn git r . anh đẩy lên giúp em với
+        <Formik 
           initialValues={{
             email: "",
             passWord: "",
@@ -28,11 +30,11 @@ function Register() {
             phoneNumber: "",
           }}
           validationSchema={SignupSchema}
-          onSubmit={(values: any) => {
+          onSubmit={(values: ISignUp) => {
             registerUser(values);
           }}
         >
-          {({ errors, touched, isValidating }) => (
+          {({ errors, touched, }) => (
           <Form>
             <h1>Create your account </h1>
             <p>Unlock all Features!</p>
@@ -41,17 +43,23 @@ function Register() {
               placeholder="Enter Your Name"
             />
             {errors.name && touched.name && (
-              <div>{errors.name}</div>
+              <div style={{ color: 'red' }}>{errors.name}</div>
             )}
             <CustomInput icon={<AiOutlineMail size={20} />}
               name="email"
               placeholder="Enter Your Email"
             />
+            {errors.email && touched.email && (
+              <div style={{ color: 'red' }}>{errors.email}</div>
+            )}
             <CustomInput
               icon={<AiOutlinePhone size={20} />}
               name="phoneNumber"
               placeholder="Enter Your PhoneNumber"
             />
+            {errors.phoneNumber && touched.phoneNumber && (
+              <div style={{ color: 'red' }}>{errors.phoneNumber}</div>
+            )}
             <CustomInput
               icon={<MdPassword size={20} />}
               type="password"
