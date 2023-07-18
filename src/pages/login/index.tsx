@@ -57,6 +57,18 @@ function Login() {
 const SContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @media (max-width: 767px) {
+    padding: 0 10px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding: 0 15px;
+  }
 `;
 const SForm = styled.div`
   display: flex;
