@@ -14,7 +14,7 @@ function Login() {
   return (
     <SContainer>
       <SForm>
-        <h1>Login to your Account </h1>
+        <h1>Login</h1>
         <p>Welcome back! Select method to log in:</p>
         <Formik
           initialValues={{

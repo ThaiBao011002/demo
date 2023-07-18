@@ -36,7 +36,7 @@ function Register() {
         >
           {({ errors, touched, }) => (
           <Form>
-            <h1>Create your account </h1>
+            <h1>Register </h1>
             <p>Unlock all Features!</p>
             <CustomInput icon={<AiOutlineUser size={20} />}
               name="name"
